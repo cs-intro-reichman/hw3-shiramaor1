@@ -23,6 +23,10 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
+		System.out.println(sqrt(10));
+		System.out.println(sqrt(111));
+		System.out.println(sqrt(121));
+		System.out.println(sqrt(81));
 	}  
 
 	// Returns x1 + x2
@@ -81,8 +85,8 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
+		// x2 != 0;
 		int result = 0;
-		// deal with x2 = 0;
 		while (x1 != 0 ) {
 			if ((x1 > 0 && x2 > 0 && x1 >= x2) || (x1 < 0 && x2 < 0 && x1 <= x2)) {
 				x1 = minus(x1, x2);
@@ -99,7 +103,7 @@ public class Algebra {
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// deal with x2 = 0; 
+		// x2 != 0; 
 		while (x1 != 0 ) {
 			if ((x1 > 0 && x2 > 0 && x1 >= x2) || (x1 < 0 && x2 < 0 && x1 <= x2)) {
 				x1 = minus(x1, x2);
@@ -115,9 +119,9 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		int guess = 0;
-		while (times(guess, guess) < x){
-			guess++;
+		while (times(guess, guess) <= x){
+			guess++;  
 		}
-		return guess;
+		return guess - 1;
 	}	  	  
 }

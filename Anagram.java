@@ -9,6 +9,7 @@ public class Anagram {
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
+		System.out.println(preProcess("SHiR  45!!/8Ama o!r"));
 		
 		// Tests the randomAnagram function.
 		System.out.println("silent and " + randomAnagram("silent") + " are anagrams.");
@@ -28,7 +29,30 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
+		// Replace the following statement with your code 
+		String newStr1 = preProcess(str1);
+		String newStr2 = preProcess(str2);
+		String temp = newStr2;
+		boolean match = false;
+		if (newStr1.length() != newStr2.length()) {
+			return false;
+		}
+		for (int i = 0; i < newStr1.length(); i++) {
+			char ch1 = newStr1.charAt(i);
+			match = false;
+			for (int j = 0 ; j < newStr2.length() ; j++) {
+				char ch2 = temp.charAt(j);
+				if (ch1 == ch2 ) {
+					temp.replace(ch1, ' ') ;
+					 match = true;
+					
+				}
+			}
+			if (match != true) {
+				return false;
+			}
+			
+		}
 		return false;
 	}
 	   
@@ -36,8 +60,18 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String newString = "";
+		for (int i = 0; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			if (ch > 64 && ch < 123) {
+				newString = newString + ch;  
+			} else {
+				newString = newString + "";
+			}
+		}
+		String afterProcess = newString.toLowerCase();
+		
+		return afterProcess;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
