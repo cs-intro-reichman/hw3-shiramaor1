@@ -32,6 +32,7 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int result = x1;
+		
 		while (x2 != 0) {
 			if (x2 > 0) {
 				result++;
@@ -47,6 +48,7 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int result = x1;
+
 		while (x2 != 0) {
 			if (x2 > 0) {
 				result--;
@@ -62,6 +64,7 @@ public class Algebra {
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int result = 0;
+
 		while (x2 != 0) {
 			if (x2 > 0) {
 				result = plus(result, x1);
@@ -76,6 +79,7 @@ public class Algebra {
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int result = 1;
+
 		while (n > 0) {
 			result = times(result, x);
 			n--;
@@ -119,6 +123,7 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		int guess = 0;
+
 		while (times(guess, guess) <= x){
 			guess++;  
 		}

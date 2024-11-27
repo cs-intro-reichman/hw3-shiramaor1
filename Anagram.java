@@ -6,6 +6,7 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
+		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lor Voldemort")); // false
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
@@ -44,7 +45,7 @@ public class Anagram {
 				char ch2 = temp.charAt(j);
 				if (ch1 == ch2 ) {
 					temp.replace(ch1, ' ') ;
-					 match = true;
+					match = true;
 					
 				}
 			}
@@ -53,7 +54,7 @@ public class Anagram {
 			}
 			
 		}
-		return false;
+		return match;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -77,7 +78,22 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String temp = str;
+		String finalStr = "";
+		int random = 0;
+
+		for(int i = 0; i < str.length(); i++ ) {
+			random = (int) (Math.random() * temp.length());
+			finalStr +=  temp.charAt(random);
+			
+			String builtString= "";
+			for (int j = 0; j < temp.length(); j++) {
+				if (j != random) {
+					builtString += temp.charAt(j);
+				}
+			}
+			temp = builtString;
+		}
+		return finalStr;
 	}
 }
