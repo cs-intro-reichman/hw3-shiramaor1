@@ -7,6 +7,7 @@ public class Anagram {
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lor Voldemort")); // false
+		System.out.println(isAnagram(" "," ")); // true
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
@@ -31,10 +32,13 @@ public class Anagram {
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		// Replace the following statement with your code 
-		String newStr1 = preProcess(str1);
-		String newStr2 = preProcess(str2);
+		String str1WithSpaces = preProcess(str1);
+		String str2WithSpaces = preProcess(str2);
+		String newStr1 = str1WithSpaces.replace(" ", "");
+		String newStr2 = str2WithSpaces.replace(" ", "");
 		String temp = newStr2;
 		boolean match = false;
+
 		if (newStr1.length() != newStr2.length()) {
 			return false;
 		}
@@ -64,7 +68,7 @@ public class Anagram {
 		String newString = "";
 		for (int i = 0; i < str.length(); i++) {
 			char ch = str.charAt(i);
-			if (ch > 64 && ch < 123) {
+			if (ch > 64 && ch < 123 || ch == ' ') {
 				newString = newString + ch;  
 			} else {
 				newString = newString + "";
