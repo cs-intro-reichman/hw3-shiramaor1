@@ -32,16 +32,18 @@ public class Anagram {
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		// Replace the following statement with your code 
-		String str1WithSpaces = preProcess(str1);
-		String str2WithSpaces = preProcess(str2);
-		String newStr1 = str1WithSpaces.replace(" ", "");
-		String newStr2 = str2WithSpaces.replace(" ", "");
+		String newStr1 = preProcessNoSpaces(str1);
+		String newStr2 = preProcessNoSpaces(str2);
 		String temp = newStr2;
 		boolean match = false;
 
 		if (newStr1.length() != newStr2.length()) {
 			return false;
 		}
+		if ( newStr1.length() == 0 && newStr2.length() == 0) {
+			return true;
+		}
+
 		for (int i = 0; i < newStr1.length(); i++) {
 			char ch1 = newStr1.charAt(i);
 			match = false;
@@ -78,15 +80,30 @@ public class Anagram {
 		
 		return afterProcess;
 	} 
+	public static String preProcessNoSpaces(String str) {
+		String newString = "";
+		for (int i = 0; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			if (ch > 64 && ch < 123) {
+				newString = newString + ch;  
+			} else {
+				newString = newString + "";
+			}
+		}
+		String afterProcess = newString.toLowerCase();
+		
+		return afterProcess;
+	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		String temp = str;
+		String newStr = preProcessNoSpaces(str);
+		String temp = newStr;
 		String finalStr = "";
 		int random = 0;
 
-		for(int i = 0; i < str.length(); i++ ) {
+		for(int i = 0; i < newStr.length(); i++ ) {
 			random = (int) (Math.random() * temp.length());
 			finalStr +=  temp.charAt(random);
 			
